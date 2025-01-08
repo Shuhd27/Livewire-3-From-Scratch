@@ -6,8 +6,7 @@ use Livewire\Component;
 
 class Greeter extends Component
 {
-    public $name = 'Shuhd';
-    public $text = 'This is just an introduction to Livewire 3 from scratch!';
+    public $name = 'Jeremy';
 
     public function render()
     {

@@ -1,4 +1,3 @@
 <div>
-    Hello, {{ $name }}! <br>
-    Tip: {{ $text }}!
+    Hello, {{ $name }}!
 </div>
