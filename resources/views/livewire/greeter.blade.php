@@ -1,6 +1,6 @@
 <div>
     <form 
-        wire:submit="changeName()"
+        wire:submit="changeGreeting()"
     >
     <div class="mt-2">
         <select 
@@ -14,7 +14,6 @@
             <option value="Howdy">Howdy</option>
 
         </select>
-        <br>
         <!-- NewNaam -->
         <input 
             type="text" 
@@ -22,6 +21,11 @@
             placeholder="Enter your name"
             wire:model="name"
         >
+    </div>
+    <div>
+        @error('name')
+            {{ $message }}            
+        @enderror
     </div>
     <div class="mt-2">
         <button 
@@ -32,9 +36,9 @@
         </button>
     </div>
     </form>
-    @if ($name != '')
+    @if ($greetingMessage != '')
         <div class="mt-5">
-            {{ $greeting }} {{ $name }}!
+            {{ $greetingMessage }}
         </div>
     @endif
 </div>
