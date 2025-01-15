@@ -2,36 +2,45 @@
 
 namespace App\Livewire;
 
+use App\Models\Greeting;
 use Livewire\Attributes\Validate;
 use Livewire\Component;
 
 class Greeter extends Component
 {
-    
     #[Validate('required|min:2')]
     public $name = '';
-
-
     public $greeting = '';
+    public $greetings = [];
     public $greetingMessage = '';
 
-    public function changeGreeting()
-    {
-        // Reset the greeting message,
-        // so that it will be updated with the new greeting.
-        // when the user clicks the button.
+    public function changeGreeting() {
         $this->reset('greetingMessage');
 
-        // Validate the input fields.
         $this->validate();
 
         $this->greetingMessage = "{$this->greeting}, {$this->name}!";
     }
 
-    // public function rules()
-    // {
+    public function mount() {
+        $this->greetings = Greeting::all();
+    }
+
+    public function updated($property, $value) {
+        // if ($property === 'name') {
+        //     $this->name = strtolower($value);
+        // }
+    }
+
+    // de onderse code is een shorthand voor de updated() [LOOK BOVEN] functie
+    // de funtie updatedName() is een speciale functie die Livewire automatisch zal aanroepen wanneer de name property wordt bijgewerkt.
+    public function updatedName($value) {
+        $this->name = strtolower($value);
+    }
+
+    // public function rules() {
     //     return [
-    //         'name' =>'required|min:2',
+    //         'name' => 'required|min:2',
     //     ];
     // }
 
